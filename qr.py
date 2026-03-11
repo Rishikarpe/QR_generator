@@ -6,20 +6,20 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
 
+import base64
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 LOGO_PATH = os.path.join(BASE_DIR, "dbspackaging_logo.jpg")
+
+with open(LOGO_PATH, "rb") as _f:
+    LOGO_B64 = "data:image/jpeg;base64," + base64.b64encode(_f.read()).decode()
 
 app = Flask(__name__)
 
 
-@app.route("/logo")
-def logo():
-    return send_file(LOGO_PATH, mimetype="image/jpeg")
-
-
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", logo=LOGO_B64)
 
 
 @app.route("/generate", methods=["POST"])
