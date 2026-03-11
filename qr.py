@@ -9,7 +9,7 @@ from reportlab.pdfgen import canvas
 import base64
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-LOGO_PATH = os.path.join(BASE_DIR, "dbspackaging_logo.jpg")
+LOGO_PATH = os.path.join(BASE_DIR, "static", "dbspackaging_logo.jpg")
 
 with open(LOGO_PATH, "rb") as _f:
     LOGO_B64 = "data:image/jpeg;base64," + base64.b64encode(_f.read()).decode()
